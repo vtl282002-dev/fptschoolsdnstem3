@@ -58,7 +58,7 @@ export const TeacherSettingsModal: React.FC<TeacherSettingsModalProps> = ({
                 BẢNG ĐIỀU KHIỂN GIÁO VIÊN
               </h2>
               <p className="text-xs text-slate-400">
-                Tùy chỉnh bài giảng, cử chỉ camera và thời lượng cho lớp học
+                Tùy chỉnh chặng bài giảng, cử chỉ camera và chế độ thi đấu
               </p>
             </div>
           </div>

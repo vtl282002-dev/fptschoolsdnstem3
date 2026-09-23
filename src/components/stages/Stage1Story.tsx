@@ -432,15 +432,28 @@ export const Stage1Story: React.FC<Stage1Props> = ({ onSubtaskComplete, onStageC
                       </h3>
                       <p className="text-xs text-slate-300 font-semibold">{zone.subtitle}</p>
                     </div>
-                    {zone.lockedItem && (
+                    {dragManager.shakingTargetId === zone.id ? (
+                      <span className="px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-300 text-xs font-black border border-rose-500 animate-pulse flex items-center gap-1">
+                        ✕ CHƯA ĐÚNG!
+                      </span>
+                    ) : zone.lockedItem ? (
                       <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-black">
                         ✓ ĐÃ KHÓA ĐÁP ÁN ĐÚNG
                       </span>
-                    )}
+                    ) : null}
                   </div>
 
-                  <div className="mt-3 min-h-[60px] rounded-2xl bg-slate-950/60 border border-slate-700 p-3 flex items-center justify-center text-center">
-                    {zone.lockedItem ? (
+                  <div className={`mt-3 min-h-[60px] rounded-2xl border p-3 flex items-center justify-center text-center transition-colors ${
+                    dragManager.shakingTargetId === zone.id
+                      ? 'bg-rose-950/70 border-rose-500'
+                      : 'bg-slate-950/60 border-slate-700'
+                  }`}>
+                    {dragManager.shakingTargetId === zone.id ? (
+                      <div className="flex items-center gap-2 text-rose-300 font-bold text-xs animate-pulse">
+                        <span className="text-base font-black">✕</span>
+                        <span>Nội dung chưa khớp với {zone.id === 'zone-problem' ? 'vấn đề' : 'giải pháp'}!</span>
+                      </div>
+                    ) : zone.lockedItem ? (
                       <div className="flex items-center gap-3 text-left">
                         {zone.lockedItem.icon}
                         <span className="text-xs md:text-sm font-bold text-white">
